@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/heroicons@2.0.13/dist/24/solid.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+</head>
+<body class=" flex">
+
+  <!-- Menu latéral -->
+ <nav class="w-16 h-screen fixed top-0 left-0 bg-white shadow-md flex flex-col items-center justify-center space-y-6 z-50">
+
+  <!-- Profil -->
+    <a href="#profil" class="group relative">
+      <i class="fas fa-user text-gray-600 hover:text-[#acc9ea] transition"></i>
+      <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+        Profil
+      </span>
+    </a>
+ 
+
+  <!-- Formation -->
+  <div class="group relative">
+    <i class="fas fa-graduation-cap text-[#142c48] hover:text-[#acc9ea] transition"></i>
+    <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+      Formation
+    </span>
+  </div>
+
+  <!-- Expériences -->
+  <div class="group relative">
+    <i class="fas fa-briefcase text-[#142c48] hover:text-[#acc9ea] transition"></i>
+    <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+      Expériences
+    </span>
+  </div>
+
+  <!-- Contact -->
+  <div class="group relative">
+    <i class="fas fa-envelope text-[#142c48] hover:text-[#acc9ea] transition"></i>
+    <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+      Contact
+    </span>
+  </div>
+
+</nav>
+
+
+  <!-- Section principale -->
+  <main class="ml-20 p-10 w-full flex flex-col items-center justify-center min-h-screen text-center">
+    <img src="doc/profil.jpg" alt="Photo de profil" class="w-60 h-60 rounded-full shadow-lg mb-6" />
+    <h1 class="text-3xl font-bold text-[#142c48]">Fatima Ezzahraa Ahrar</h1>
+<p class="text-2xl mt-2" style="color: #142c48;">
+  Ingénieure en Qualité Hygiène Sécurité et Environnemen
+</p>
+    
+    <div class="mt-6 flex gap-4">
+<a href="doc/CV AHRAR FATIMA.Z (1).pdf" download class="flex items-center gap-2 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#142c48" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  </svg>
+  Télécharger mon CV
+</a>
+<a href="mailto:aya@example.com" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#142c48" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+  Contacter
+</a>
+    </div>
+  </main>
+
+  <section id="profil" class="bg-[#142c48] text-white text-center">
+      <div class="max-w-4xl mx-auto text-sm md:text-base leading-relaxed">
+Je suis Fatima-Ezzahraa Ahrar, ingénieure en QHSE, et lauréate du Master spécialisé QHSE de l’ESITH Casablanca.
+Ce portfolio reflète mon parcours, mes compétences et ma passion pour la qualité, la sécurité et l’environnement.      </div>
+    </section>
+
+
+
+</body>
+</html>
