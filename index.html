@@ -10,11 +10,10 @@
     html {
       scroll-behavior: smooth;
     }
-    #profil {
-      display: none;
-    }
-    #profil:target {
-      display: block;
+    section {
+      min-height: 100vh;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   </style>
 </head>
@@ -29,50 +28,136 @@
         Profil
       </span>
     </a>
-    <!-- Autres icônes -->
-    <div class="group relative">
+    
+    <!-- Formation -->
+    <a href="#formation" class="group relative">
       <i class="fas fa-graduation-cap text-[#142c48] hover:text-[#acc9ea] transition"></i>
-    </div>
-    <div class="group relative">
+      <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+        Formation
+      </span>
+    </a>
+    
+    <!-- Expérience -->
+    <a href="#experience" class="group relative">
       <i class="fas fa-briefcase text-[#142c48] hover:text-[#acc9ea] transition"></i>
-    </div>
-    <div class="group relative">
+      <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+        Expérience
+      </span>
+    </a>
+    
+    <!-- Contact -->
+    <a href="#contact" class="group relative">
       <i class="fas fa-envelope text-[#142c48] hover:text-[#acc9ea] transition"></i>
-    </div>
+      <span class="absolute left-10 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+        Contact
+      </span>
+    </a>
   </nav>
 
-  <!-- Section principale -->
-  <section class="ml-20 p-10 w-full flex flex-col items-center justify-center min-h-screen text-center">
-    <img src="doc/profil.jpg" alt="Photo de profil" class="w-60 h-60 rounded-full shadow-lg mb-6" />
-    <h1 class="text-3xl font-bold text-[#142c48]">Fatima Ezzahraa Ahrar</h1>
-    <p class="text-2xl mt-2 text-[#142c48]">
-      Ingénieure en Qualité Hygiène Sécurité et Environnement
-    </p>
-    
-    <div class="mt-6 flex gap-4">
-      <a href="doc/CV AHRAR FATIMA.Z (1).pdf" download class="flex items-center gap-2 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
-        <i class="fas fa-download"></i>
-        Télécharger mon CV
-      </a>
-      <a href="mailto:aya@example.com" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
-        <i class="fas fa-envelope"></i>
-        Contacter
-      </a>
-    </div>
-  </section>
+  <!-- Contenu principal -->
+  <main class="ml-20 w-full">
+    <!-- Section Profil -->
+    <section id="profil" class="p-10 flex flex-col items-center justify-center text-center">
+      <img src="doc/profil.jpg" alt="Photo de profil" class="w-60 h-60 rounded-full shadow-lg mb-6" />
+      <h1 class="text-3xl font-bold text-[#142c48]">Fatima Ezzahraa Ahrar</h1>
+      <p class="text-2xl mt-2 text-[#142c48]">
+        Ingénieure en Qualité Hygiène Sécurité et Environnement
+      </p>
+      
+      <div class="mt-6 flex gap-4">
+        <a href="doc/CV AHRAR FATIMA.Z (1).pdf" download class="flex items-center gap-2 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
+          <i class="fas fa-download"></i>
+          Télécharger mon CV
+        </a>
+        <a href="mailto:aya@example.com" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
+          <i class="fas fa-envelope"></i>
+          Contacter
+        </a>
+      </div>
+    </section>
 
-  <!-- Section Profil (À propos) - cachée par défaut -->
-  <section id="profil" class="bg-[#142c48] text-white text-center py-20 px-6 w-full">
-    <div class="max-w-4xl mx-auto text-sm md:text-base leading-relaxed">
-      <h2 class="text-2xl font-semibold mb-4 text-[#acc9ea]">À propos de moi</h2>
-      <p class="mb-4">
-        Je suis Fatima-Ezzahraa Ahrar, ingénieure en HSE et lauréate du Master spécialisé QHSE de l'ESITH Casablanca.
-      </p>
-      <p>
-        Ce portfolio reflète mon parcours, mes compétences et ma passion pour la qualité, la sécurité et l'environnement.
-      </p>
-    </div>
-  </section>
+    <!-- Section Formation -->
+    <section id="formation" class="p-10 bg-gray-50">
+      <h2 class="text-3xl font-bold text-[#142c48] mb-8 text-center">Formation</h2>
+      <div class="max-w-4xl mx-auto">
+        <!-- Exemple d'élément de formation -->
+        <div class="mb-6 p-6 bg-white rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-[#142c48]">Diplôme d'Ingénieur en QHSE</h3>
+          <p class="text-gray-600 mt-2">Université XYZ - 2018-2021</p>
+          <p class="mt-2 text-gray-700">Spécialisation en gestion des risques industriels et environnementaux.</p>
+        </div>
+        
+        <div class="mb-6 p-6 bg-white rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-[#142c48]">Master en Environnement</h3>
+          <p class="text-gray-600 mt-2">Université ABC - 2016-2018</p>
+          <p class="mt-2 text-gray-700">Spécialisation en gestion durable des ressources naturelles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Expérience -->
+    <section id="experience" class="p-10">
+      <h2 class="text-3xl font-bold text-[#142c48] mb-8 text-center">Expérience Professionnelle</h2>
+      <div class="max-w-4xl mx-auto">
+        <!-- Exemple d'élément d'expérience -->
+        <div class="mb-6 p-6 bg-white rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-[#142c48]">Ingénieure QHSE</h3>
+          <p class="text-gray-600 mt-2">Entreprise DEF - 2021-Présent</p>
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>Mise en place du système de management QHSE</li>
+            <li>Audits internes et analyses des risques</li>
+            <li>Formation du personnel aux normes de sécurité</li>
+          </ul>
+        </div>
+        
+        <div class="mb-6 p-6 bg-white rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-[#142c48]">Stagiaire en Environnement</h3>
+          <p class="text-gray-600 mt-2">Entreprise GHI - 2020</p>
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>Étude d'impact environnemental</li>
+            <li>Propositions de mesures correctives</li>
+            <li>Rédaction de rapports techniques</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="p-10 bg-gray-50 flex flex-col items-center">
+      <h2 class="text-3xl font-bold text-[#142c48] mb-8 text-center">Contactez-moi</h2>
+      <div class="max-w-md w-full bg-white p-8 rounded-lg shadow">
+        <form>
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 mb-2">Nom</label>
+            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#acc9ea]">
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 mb-2">Email</label>
+            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#acc9ea]">
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700 mb-2">Message</label>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#acc9ea]"></textarea>
+          </div>
+          <button type="submit" class="w-full py-2 px-4 rounded-lg hover:bg-purple-600 transition" style="background-color: #acc9ea; color: #142c48;">
+            Envoyer
+          </button>
+        </form>
+        
+        <div class="mt-8 flex justify-center space-x-6">
+          <a href="#" class="text-[#142c48] hover:text-[#acc9ea]">
+            <i class="fab fa-linkedin-in text-2xl"></i>
+          </a>
+          <a href="#" class="text-[#142c48] hover:text-[#acc9ea]">
+            <i class="fab fa-twitter text-2xl"></i>
+          </a>
+          <a href="#" class="text-[#142c48] hover:text-[#acc9ea]">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
 </body>
 </html>
