@@ -50,22 +50,123 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
-    position: relative;
-}
-
-* {
-    box-sizing: border-box;
-}
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Menu mobile */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      background: #142c48;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .mobile-menu-icon {
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 250px;
+      height: 100vh;
+      background: white;
+      z-index: 99;
+      transition: all 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      padding-top: 80px;
+    }
+    
+    .mobile-nav.active {
+      left: 0;
+    }
+    
+    .mobile-nav a {
+      display: block;
+      padding: 15px 20px;
+      color: #142c48;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      transition: all 0.3s;
+    }
+    
+    .mobile-nav a:hover {
+      background: #acc9ea;
+      color: #142c48;
+    }
+    
+    .mobile-nav a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 98;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    @media (min-width: 769px) {
+      .mobile-menu, .mobile-nav, .overlay {
+        display: none !important;
+      }
+      nav {
+        display: flex !important;
+      }
+      main {
+        margin-left: 80px !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        display: none!important;
+      }
+      main {
+        margin-left: 0 !important;
+      }
+      .mobile-menu {
+        display: flex;
+      }
+    }
   </style>
 </head>
-<body class="flex ">
+<body class="flex">
 
-  <!-- Menu latéral -->
-  <nav class="w-16 h-screen fixed top-0 left-0 bg-white shadow-lg flex flex-col items-center justify-center space-y-8 z-50">
+  <!-- Menu latéral desktop -->
+  <nav  class="w-16 h-screen fixed top-0 left-0 bg-white shadow-lg flex flex-col items-center justify-center space-y-8 z-50">
     <a href="#profil" class="group relative">
       <div class="w-10 h-10 rounded-full flex items-center justify-center bg-[#142c48] group-hover:bg-[#acc9ea] transition">
         <i class="fas fa-user text-white group-hover:text-[#142c48]"></i>
@@ -86,7 +187,7 @@
     
     <a href="#competences" class="group relative">
       <div class="w-10 h-10 rounded-full flex items-center justify-center bg-[#142c48] group-hover:bg-[#acc9ea] transition">
-    <i class="fas fa-chart-bar text-white group-hover:text-[#142c48]"></i>
+        <i class="fas fa-chart-bar text-white group-hover:text-[#142c48]"></i>
       </div>
       <span class="absolute left-12 top-1/2 transform -translate-y-1/2 bg-[#142c48] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
         Compétences
@@ -112,13 +213,37 @@
     </a>
   </nav>
 
+  <!-- Menu mobile -->
+  <div class="mobile-menu" id="mobileMenuButton">
+    <i class="fas fa-bars mobile-menu-icon"></i>
+  </div>
+  
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#profil" class="flex items-center">
+      <i class="fas fa-user"></i> Profil
+    </a>
+    <a href="#formation" class="flex items-center">
+      <i class="fas fa-graduation-cap"></i> Formation
+    </a>
+    <a href="#competences" class="flex items-center">
+      <i class="fas fa-chart-bar"></i> Compétences
+    </a>
+    <a href="#experience" class="flex items-center">
+      <i class="fas fa-briefcase"></i> Expérience
+    </a>
+    <a href="#contact" class="flex items-center">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+  </div>
+  
+  <div class="overlay" id="overlay"></div>
+
   <!-- Contenu principal -->
   <main class="ml-20 w-full">
     <!-- Section Profil -->
     <section id="profil" class="flex flex-col items-center justify-center text-center">
       <div class="relative">
         <img src="doc/profil.jpg" alt="Photo de profil" class="w-60 h-60 rounded-full shadow-xl mb-6 border-4 border-[#acc9ea]" />
-       
       </div>
       <h1 class="text-4xl font-bold text-[#142c48]">Fatima Ezzahraa Ahrar</h1>
       <p class="text-2xl mt-4 text-[#142c48] font-medium">
@@ -126,7 +251,7 @@
       </p>
       
       <div class="mt-8 flex gap-4">
-        <a href="doc/CV AHRAR FATIMA.Z (1).pdf" download class="flex items-center gap-2 bg-[#142c48] text-white px-6 py-3 rounded-lg hover:bg-[#acc9ea] hover:text-[#142c48] transition font-medium">
+        <a href="doc/CV_Fatima_zzahraa_Ahrar.pdf" download class="flex items-center gap-2 bg-[#142c48] text-white px-6 py-3 rounded-lg hover:bg-[#acc9ea] hover:text-[#142c48] transition font-medium">
           <i class="fas fa-download"></i>
           Télécharger mon CV
         </a>
@@ -137,6 +262,7 @@
       </div>
     </section>
 
+    <!-- Autres sections restent inchangées -->
     <!-- Section Formation -->
     <section id="formation" class="bg-gradient-to-b from-white to-gray-50">
       <div class="max-w-5xl mx-auto">
@@ -201,339 +327,357 @@
       </div>
     </section>
 
-  <!-- Section Compétences -->
-<section id="competences" class="bg-white text-[#142c48]">
-  <div class="max-w-5xl mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-12 text-center relative">
-      <span class="bg-white px-4 relative z-10">Mes Compétences</span>
-      <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#acc9ea] z-0"></span>
-    </h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-shield-alt text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Évaluation des risques et contrôle des dangers</h3>
-        <p class="text-gray-600">Identification et analyse des risques professionnels et environnementaux</p>
-      </div>
-      
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-certificate text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Conformité aux normes</h3>
-        <p class="text-gray-600">Maitrise des normes ISO 9001, 45001, ISO 14001 et réglementations en vigueur</p>
-      </div>
-      
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-check-circle text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Contrôle qualité</h3>
-        <p class="text-gray-600">Mise en place et suivi des procédures qualité</p>
-      </div>
-      
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-clipboard-check text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Audits en hygiène, sécurité et environnement</h3>
-        <p class="text-gray-600">Réalisation d'audits internes et préparation aux audits externes</p>
-      </div>
-      
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-leaf text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Développement durable</h3>
-        <p class="text-gray-600">Intégration des principes de développement durable dans les processus industriels</p>
-      </div>
-      
-      <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
-        <div class="text-[#142c48] mb-3">
-          <i class="fas fa-chalkboard-teacher text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Animation et sensibilisation à la sécurité</h3>
-        <p class="text-gray-600">Formation et sensibilisation du personnel aux bonnes pratiques QHSE</p>
-      </div>
-    </div>
-  </div>
-</section>
-   <!-- Section Expérience -->
-<section id="experience" class="bg-white">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold text-[#142c48] mb-12 text-center relative">
-      <span class="bg-white px-4 relative z-10">Expérience Professionnelle</span>
-      <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#acc9ea] z-0"></span>
-    </h2>
-    
-    <!-- Sonasid -->
-   <div class="experience-item mb-8">
-  <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-    <div class="flex items-start">
-      <!-- Conteneur de l'image aligné verticalement -->
-       <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/sonasid.webp" alt="Logo Sonasid" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-      
-      <div>
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-          <h3 class="text-xl font-bold text-[#142c48]">Sonasid</h3>
-          <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">17 Février - 17 Juin 2022</span>
-        </div>
-        <p class="text-gray-600 mt-1 italic">Société Nationale de Sidérurgie située à El Jadida</p>
-        <ul class="mt-4 space-y-2 text-gray-700">
-          <li class="flex items-start">
-            <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-            <span>Élaboration du Plan d'Opération Interne (POI) pour la gestion des situations d'urgence dans l'unité laminoir et Broyeur ferraille</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-            <span>Identification et analyse des risques industriels</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-            <span>Amélioration de la gestion des produits chimiques en milieu industriel</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    <!-- Ciments du Maroc -->
-    <div class="experience-item mb-8">
-      <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-        <div class="flex items-start">
-           <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/Ciments.png" alt="Logo Sonasid" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-          <div>
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-              <h3 class="text-xl font-bold text-[#142c48]">Ciments du Maroc</h3>
-              <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">17 Février - 17 Juin 2022</span>
+    <!-- Section Compétences -->
+    <section id="competences" class="bg-white text-[#142c48]">
+      <div class="max-w-5xl mx-auto py-12">
+        <h2 class="text-3xl font-bold mb-12 text-center relative">
+          <span class="bg-white px-4 relative z-10">Mes Compétences</span>
+          <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#acc9ea] z-0"></span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-shield-alt text-3xl"></i>
             </div>
-            <p class="text-gray-600 mt-1 italic">Situé à Marrakech</p>
-            <ul class="mt-4 space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Réalisation d'une évaluation complète des risques en utilisant la méthode d'Analyse Préliminaire des Risques (APR)</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Identification des dangers potentiels et recommandations pour des améliorations de sécurité</span>
-              </li>
-            </ul>
+            <h3 class="text-xl font-bold mb-2">Évaluation des risques et contrôle des dangers</h3>
+            <p class="text-gray-600">Identification et analyse des risques professionnels et environnementaux</p>
+          </div>
+          
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-certificate text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Conformité aux normes</h3>
+            <p class="text-gray-600">Maitrise des normes ISO 9001, 45001, ISO 14001 et réglementations en vigueur</p>
+          </div>
+          
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-check-circle text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Contrôle qualité</h3>
+            <p class="text-gray-600">Mise en place et suivi des procédures qualité</p>
+          </div>
+          
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-clipboard-check text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Audits en hygiène, sécurité et environnement</h3>
+            <p class="text-gray-600">Réalisation d'audits internes et préparation aux audits externes</p>
+          </div>
+          
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-leaf text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Développement durable</h3>
+            <p class="text-gray-600">Intégration des principes de développement durable dans les processus industriels</p>
+          </div>
+          
+          <div class="competence-item bg-gray-50 p-6 rounded-xl border border-[#acc9ea] hover:shadow-md transition-shadow">
+            <div class="text-[#142c48] mb-3">
+              <i class="fas fa-chalkboard-teacher text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Animation et sensibilisation à la sécurité</h3>
+            <p class="text-gray-600">Formation et sensibilisation du personnel aux bonnes pratiques QHSE</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
     
-    <!-- Settavex -->
-    <div class="experience-item mb-8">
-      <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-        <div class="flex items-start">
-           <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/settavex.png" alt="Logo settavex" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-          <div>
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-              <h3 class="text-xl font-bold text-[#142c48]">Settavex</h3>
-              <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">6 Mars - 26 Mai 2023</span>
-            </div>
-            <p class="text-gray-600 mt-1 italic">Filiale du groupe Tavexeurope situé à Settat</p>
-            <ul class="mt-4 space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Établir des recherches (bilan carbone)</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Analyse de données</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Sensibilisation environnementale</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Laboratoire REMTEX -->
-    <div class="experience-item mb-8">
-      <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-        <div class="flex items-start">
-          <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/REMTEX.png" alt="Logo REMTEX" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-          <div>
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-              <h3 class="text-xl font-bold text-[#142c48]">Laboratoire REMTEX</h3>
-              <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">9 Mai - 3 Juin 2022</span>
-            </div>
-            <p class="text-gray-600 mt-1 italic">Laboratoire de recherche sur les matériaux textiles situé à Casablanca</p>
-            <ul class="mt-4 space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Établir des recherches</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Analyser chaque test en utilisant des techniques courantes de biochimie</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- ROKGLOBAL -->
-     <div class="experience-item mb-8">
-      <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-        <div class="flex items-start">
-          <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/ROKGLOBAL.png" alt="Logo REMTEX" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-          <div>
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-              <h3 class="text-xl font-bold text-[#142c48]">ROKGLOBAL</h3>
-              <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">1 Juillet - 26 Aout 2021</span>
-            </div>
-            <p class="text-gray-600 mt-1 italic">ROKGLOBAL à Casablanca : </p>
-            <ul class="mt-4 space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Découvrir des techniques de ventes -Gérer des appels sortants -Proposer des solutions d'assistance </span>
-              </li>
+    <!-- Section Expérience -->
+    <section id="experience" class="bg-white">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-[#142c48] mb-12 text-center relative">
+          <span class="bg-white px-4 relative z-10">Expérience Professionnelle</span>
+          <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#acc9ea] z-0"></span>
+        </h2>
+        
+        <!-- Sonasid -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/sonasid.webp" alt="Logo Sonasid" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
               
-            </ul>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">Sonasid</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">17 Février - 17 Juin 2022</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">Société Nationale de Sidérurgie située à El Jadida</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Élaboration du Plan d'Opération Interne (POI) pour la gestion des situations d'urgence dans l'unité laminoir et Broyeur ferraille</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Identification et analyse des risques industriels</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Amélioration de la gestion des produits chimiques en milieu industriel</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- FTSI -->
-    <div class="experience-item mb-8">
-      <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
-        <div class="flex items-start">
-                    <div class="mr-6 flex-shrink-0">
-        <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
-          <img src="doc/FTSI.png" alt="Logo FTSI" 
-               class="w-full h-full object-contain p-1 bg-white">
-        </div>
-      </div>
-          <div>
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-              <h3 class="text-xl font-bold text-[#142c48]">FTSI</h3>
-              <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">3 Mai - 27 Mai 2021</span>
-            </div>
-            <p class="text-gray-600 mt-1 italic">Filature Textile Settat Industrie du groupe UTEXBEL à Settat</p>
-            <ul class="mt-4 space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
-                <span>Observation et planification de la production avec des chefs d'atelier</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    <!-- Section Contact -->
-<!-- Section Contact - Style coordonnées modifié -->
-<section id="contact" class="bg-white text-[#142c48] py-12">
-  <div class="max-w-5xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-12 text-center relative">
-      <span class="bg-white px-4 relative z-10">Contactez-moi</span>
-      <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#142c48] z-0"></span>
-    </h2>
-    
-    <div class="flex flex-col items-center">
-      <!-- Paragraphe d'invitation -->
-      <div class="p-8 rounded-xl mb-8 w-full max-w-2xl text-center">
-        <h3 class="text-xl font-bold mb-4">Disponible pour de nouvelles opportunités</h3>
-        <p class="text-gray-700 mb-6">
-          Je suis intéressée par des projets dans les domaines QHSE, la qualité, gestion des risques , développement durable. 
-          Contactez-moi directement via les coordonnées ci-dessous :
-        </p>
-      </div>
-      
-      <!-- Coordonnées - Nouveau style -->
-      <div class="w-full max-w-md">
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Carte téléphone -->
-          <a href="tel:+212600503269" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
-            <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
-<i class="fa-solid fa-phone"></i>            </div>
-            <div>
-              <h4 class="font-semibold text-sm text-gray-500">Téléphone</h4>
-              <p class="font-medium">+212 600 503 269</p>
-            </div>
-          </a>
-          
-          <!-- Carte email -->
-          <a href="mailto:fatimaezzahraahrar@gmail.com" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
-            <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm text-gray-500">Email</h4>
-              <p class="font-medium">fatimaezzahraahrar@gmail.com</p>
-            </div>
-          </a>
-          
-          <!-- Carte LinkedIn -->
-          <a href="http://linkedin.com/in/fatima-ezzahraa-ahrar-7a1323211" target="_blank" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
-            <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
-              <i class="fab fa-linkedin-in"></i>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm text-gray-500">LinkedIn</h4>
-              <p class="font-medium">/fatima-ezzahraa-ahrar</p>
-            </div>
-          </a>
         </div>
         
-       
+        <!-- Ciments du Maroc -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/Ciments.png" alt="Logo Sonasid" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">Ciments du Maroc</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">17 Février - 17 Juin 2022</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">Situé à Marrakech</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Réalisation d'une évaluation complète des risques en utilisant la méthode d'Analyse Préliminaire des Risques (APR)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Identification des dangers potentiels et recommandations pour des améliorations de sécurité</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Settavex -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/settavex.png" alt="Logo settavex" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">Settavex</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">6 Mars - 26 Mai 2023</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">Filiale du groupe Tavexeurope situé à Settat</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Établir des recherches (bilan carbone)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Analyse de données</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Sensibilisation environnementale</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Laboratoire REMTEX -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/REMTEX.png" alt="Logo REMTEX" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">Laboratoire REMTEX</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">9 Mai - 3 Juin 2022</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">Laboratoire de recherche sur les matériaux textiles situé à Casablanca</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Établir des recherches</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Analyser chaque test en utilisant des techniques courantes de biochimie</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ROKGLOBAL -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/ROKGLOBAL.png" alt="Logo REMTEX" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">ROKGLOBAL</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">1 Juillet - 26 Aout 2021</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">ROKGLOBAL à Casablanca : </p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Découvrir des techniques de ventes -Gérer des appels sortants -Proposer des solutions d'assistance </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FTSI -->
+        <div class="experience-item mb-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-[#142c48]">
+            <div class="flex items-start">
+              <div class="mr-6 flex-shrink-0">
+                <div class="rounded-full w-14 h-14 overflow-hidden border-2 border-[#142c48]">
+                  <img src="doc/FTSI.png" alt="Logo FTSI" class="w-full h-full object-contain p-1 bg-white">
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <h3 class="text-xl font-bold text-[#142c48]">FTSI</h3>
+                  <span class="text-[#acc9ea] font-medium bg-[#142c48]/10 px-3 py-1 rounded-full">3 Mai - 27 Mai 2021</span>
+                </div>
+                <p class="text-gray-600 mt-1 italic">Filature Textile Settat Industrie du groupe UTEXBEL à Settat</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-[#acc9ea] mr-2 mt-1"></i>
+                    <span>Observation et planification de la production avec des chefs d'atelier</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- Footer -->
-<footer class="bg-white text-[#142c48] py-6 border-t border-gray-200">
-  <div class="max-w-5xl mx-auto px-4 text-center">
-    <p class="flex items-center justify-center gap-1 flex-wrap">
-      <span>Made with</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 fill-current animate-pulse" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-      </svg>
-      <span>by</span>
-      <a href="mailto:ayaaatfaoui38@gmail.com" class="text-[#142c48] hover:text-[#acc9ea] transition-colors inline-flex items-center font-medium">
-        AATFAOUI AYA
-      </a>
-    </p>
-  </div>
-</footer>  </main>
+    </section>
+    
+    <!-- Section Contact -->
+    <section id="contact" class="bg-white text-[#142c48] py-12">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-12 text-center relative">
+          <span class="bg-white px-4 relative z-10">Contactez-moi</span>
+          <span class="absolute left-0 right-0 top-1/2 h-0.5 bg-[#142c48] z-0"></span>
+        </h2>
+        
+        <div class="flex flex-col items-center">
+          <!-- Paragraphe d'invitation -->
+          <div class="p-8 rounded-xl mb-8 w-full max-w-2xl text-center">
+            <h3 class="text-xl font-bold mb-4">Disponible pour de nouvelles opportunités</h3>
+            <p class="text-gray-700 mb-6">
+              Je suis intéressée par des projets dans les domaines QHSE, la qualité, gestion des risques , développement durable. 
+              Contactez-moi directement via les coordonnées ci-dessous :
+            </p>
+          </div>
+          
+          <!-- Coordonnées - Nouveau style -->
+          <div class="w-full max-w-md">
+            <div class="grid grid-cols-1 gap-4">
+              <!-- Carte téléphone -->
+              <a href="tel:+212600503269" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
+                <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-500">Téléphone</h4>
+                  <p class="font-medium">+212 600 503 269</p>
+                </div>
+              </a>
+              
+              <!-- Carte email -->
+              <a href="mailto:fatimaezzahraahrar@gmail.com" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
+                <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-500">Email</h4>
+                  <p class="font-medium">fatimaezzahraahrar@gmail.com</p>
+                </div>
+              </a>
+              
+              <!-- Carte LinkedIn -->
+              <a href="http://linkedin.com/in/fatima-ezzahraa-ahrar-7a1323211" target="_blank" class="bg-gradient-to-r from-[#f0f7ff] to-[#e1edfd] p-4 rounded-lg shadow-sm hover:shadow-md transition-all border border-[#acc9ea]/50 hover:border-[#142c48]/30 flex items-center">
+                <div class="bg-[#142c48] text-white p-3 rounded-full mr-4">
+                  <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-500">LinkedIn</h4>
+                  <p class="font-medium">/fatima-ezzahraa-ahrar</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-white text-[#142c48] py-6 border-t border-gray-200">
+      <div class="max-w-5xl mx-auto px-4 text-center">
+        <p class="flex items-center justify-center gap-1 flex-wrap">
+          <span>Made with</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 fill-current animate-pulse" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+          </svg>
+          <span>by</span>
+          <a href="mailto:ayaaatfaoui38@gmail.com" class="text-[#142c48] hover:text-[#acc9ea] transition-colors inline-flex items-center font-medium">
+            AATFAOUI AYA
+          </a>
+        </p>
+      </div>
+    </footer>
+  </main>
 
- 
-
+  <script>
+    // Gestion du menu mobile
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+    
+    mobileMenuButton.addEventListener('click', function() {
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+    
+    overlay.addEventListener('click', function() {
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    
+    // Fermer le menu mobile lorsqu'un lien est cliqué
+    const mobileLinks = document.querySelectorAll('.mobile-nav a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
